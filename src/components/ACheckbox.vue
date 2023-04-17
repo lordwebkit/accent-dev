@@ -1,12 +1,12 @@
 <template>
     <div class="checkbox-wrapper">
       <input type="checkbox" class="checkbox" :id="checkboxId" :checked="checkboxChecked">
-      <label class="checkbox" :for="checkboxId" @click.prevent="setCheckbox"></label>
+      <label class="checkbox" :data-code="dataCode" :for="checkboxId" @click.prevent="setCheckbox"></label>
     </div>
   </template>
   <script>
   export default {
-    props: ['checkboxId', 'checkboxChecked', 'setCheckbox']
+    props: ['checkboxId', 'checkboxChecked', 'setCheckbox', 'dataCode']
   }
   </script>
   <style lang="scss" scoped>
