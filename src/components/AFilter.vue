@@ -1,39 +1,30 @@
 <script setup>
 import ACheckbox from './ACheckbox.vue';
 import ABtn from './ABtn.vue';
+import { useFiltersStore } from '@/stores/filters'
+import { useProductsStore } from '@/stores/products'
+
+const store = useFiltersStore();
+const storeProducts = useProductsStore();
+
+store.filterBrandsReq();
 </script>
 <template>
   <div class="filter">
     <div class="filter-inner">
       <h3 class="filter__title">Бренды</h3>
       <div class="filter__brands">
-        <div class="filter__brand filter-brand">
-          <ACheckbox class="filter-brand__checkbox" />
-          <p class="filter-brand__name">Brand 1</p>
-        </div>
-        <div class="filter__brand filter-brand">
-          <ACheckbox class="filter-brand__checkbox" />
-          <p class="filter-brand__name">Brand 2</p>
-        </div>
-        <div class="filter__brand filter-brand">
-          <ACheckbox class="filter-brand__checkbox" />
-          <p class="filter-brand__name">Brand 3</p>
-        </div>
-        <div class="filter__brand filter-brand">
-          <ACheckbox class="filter-brand__checkbox" />
-          <p class="filter-brand__name">Brand 4</p>
+        <div class="filter__brand filter-brand" v-for="(brand, index) in store.getFilterBrands" :key="index">
+          <ACheckbox class="filter-brand__checkbox" :checkedId="brand.id" :checkboxChecked="brand.checked"
+            :setCheckbox="store.setCheckedBrandFilter" :dataCode="brand.code" />
+          <p class="filter-brand__name">{{ brand.title }}</p>
         </div>
       </div>
-      <ABtn class="filter__put">Применить</ABtn>
-      <button class="filter__undo">Сбросить</button>
+      <ABtn class="filter__put" @click.prevent="storeProducts.setFilteredProducts(store.getFilterBrands)">Применить</ABtn>
+      <button class="filter__undo" @click.prevent="storeProducts.clearFilteredProducts(store.clearFilterBrands)">Сбросить</button>
     </div>
   </div>
 </template>
-<script>
-export default {
-
-}
-</script>
 <style lang="scss">
 .filter {
   max-width: 400px;

@@ -2,19 +2,33 @@ import { defineStore } from "pinia"
 
 export const useProductsStore = defineStore('products', {
   state: () => ({
-    productsData: []
+    products: [],
+    filteredProducts: []
   }),
   getters: {
-    products: (state) => state.productsData
+    getProducts: (state) => {
+      if (state.filteredProducts.length === 0) {
+        return state.products
+      } else {
+        return state.products.filter((product) => state.filteredProducts.includes(`brand_${product.brand}`))
+      }
+    }
   },
   actions: {
     // imitation of sending a request to the server
-    async getProducts() {
+    async productsReq() {
       try {
-        this.productsData = await [].concat(products)
+        this.products = await [].concat(products)
       } catch (err) {
         console.error(err)
       }
+    },
+    setFilteredProducts(brands) {
+      this.filteredProducts = brands.filter(brand => brand.checked).map(brand => brand.code)
+    },
+    clearFilteredProducts(clearFilterBrands) {
+      clearFilterBrands();
+      this.filteredProducts = [];
     }
   }
 })

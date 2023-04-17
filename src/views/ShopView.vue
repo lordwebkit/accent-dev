@@ -16,17 +16,13 @@
   </div>
 </template>
 <script setup>
-import { ref, computed } from 'vue'
 import AFilter from '@/components/AFilter.vue';
 import ShopCard from '@/components/ShopCard.vue';
+import { ref, computed } from 'vue'
 import { useProductsStore } from '@/stores/products';
-import { storeToRefs } from 'pinia';
-
 
 const store = useProductsStore();
-store.getProducts();
-
-const { productsData } = storeToRefs(store)
+store.productsReq();
 
 const currentPage = ref(1);
 const productsPerPage = ref(6);
@@ -34,11 +30,11 @@ const productsPerPage = ref(6);
 const displayedProducts = computed(() => {
   const start = (currentPage.value - 1) * productsPerPage.value;
   const end = start + productsPerPage.value;
-  return productsData.value.slice(start, end);
+  return store.getProducts.slice(start, end);
 })
 
 const pageCount = computed(() => {
-  const pageCount = Math.ceil(productsData.value.length / productsPerPage.value)
+  const pageCount = Math.ceil(store.getProducts.length / productsPerPage.value)
   return pageCount > 1 ? pageCount : 0
 })
 
