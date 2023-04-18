@@ -8,6 +8,11 @@ const store = useFiltersStore();
 const storeProducts = useProductsStore();
 
 store.filterBrandsReq();
+
+function clearFilteredProducts() {
+  store.clearFilterBrands();
+  storeProducts.clearFilteredProducts();
+}
 </script>
 <template>
   <div class="filter">
@@ -21,7 +26,7 @@ store.filterBrandsReq();
         </div>
       </div>
       <ABtn class="filter__put" @click.prevent="storeProducts.setFilteredProducts(store.getFilterBrands)">Применить</ABtn>
-      <button class="filter__undo" @click.prevent="storeProducts.clearFilteredProducts(store.clearFilterBrands)">Сбросить</button>
+      <button class="filter__undo" @click.prevent="clearFilteredProducts()">Сбросить</button>
     </div>
   </div>
 </template>
@@ -50,7 +55,5 @@ store.filterBrandsReq();
 .filter-brand {
   display: flex;
   margin-bottom: 10px;
-
-  &__name {}
 }
 </style>

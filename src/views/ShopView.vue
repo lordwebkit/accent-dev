@@ -4,11 +4,12 @@
       <AFilter class="shop__filter" />
       <div class="shop-content">
         <div class="shop-content__list">
-          <ShopCard v-for="product in displayedProducts" v-bind:key="product.id" :productData="product" />
+          <ShopCard class="shop-content__item" v-for="product in displayedProducts" v-bind:key="product.id" :productData="product" />
         </div>
         <ul class="shop-content__pagination shop-pagination">
           <li class="shop-pagination__item" v-for="(page, index) in pages" :key="index">
-            <a class="shop-pagination__link" :class="{ 'shop-pagination__link--active': currentPage === index + 1 }" href="#" @click.prevent="currentPage = index + 1">{{ index + 1 }}</a>
+            <a class="shop-pagination__link" :class="{ 'shop-pagination__link--active': currentPage === index + 1 }"
+              href="#" @click.prevent="currentPage = index + 1">{{ index + 1 }}</a>
           </li>
         </ul>
       </div>
@@ -65,9 +66,13 @@ const pages = computed(() => {
   &__list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    // justify-content: space-around;
     height: 90%;
     padding: 20px 50px 0;
+  }
+
+  &__item {
+    margin-right: 10px;
   }
 
   &__pagination {
@@ -81,17 +86,19 @@ const pages = computed(() => {
     list-style: none;
     width: 15px;
   }
+
   &__link {
     text-decoration: none;
     color: gray;
     font-weight: bold;
+
     &--active {
       color: black;
     }
+
     &:hover {
       cursor: pointer;
       color: black
     }
   }
-}
-</style>
+}</style>

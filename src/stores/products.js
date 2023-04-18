@@ -26,8 +26,7 @@ export const useProductsStore = defineStore('products', {
     setFilteredProducts(brands) {
       this.filteredProducts = brands.filter(brand => brand.checked).map(brand => brand.code)
     },
-    clearFilteredProducts(clearFilterBrands) {
-      clearFilterBrands();
+    clearFilteredProducts() {
       this.filteredProducts = [];
     }
   }

@@ -21,6 +21,12 @@ export default {
 </script>
 <style lang="scss">
 .shop-card {
+  width: 250px;
+  height: 375px;
+  background-color: rgb(136, 121, 119);
+  border-radius: 10px;
+  color: #fff;
+
   &__inner {
     padding: 5px;
   }
@@ -28,10 +34,5 @@ export default {
   &__image {
     width: 100%;
   }
-
-  width: 250px;
-  height: 375px;
-  background-color: gray;
-  border-radius: 10px;
 }
 </style>
