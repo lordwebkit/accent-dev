@@ -30,7 +30,7 @@ function clearFilteredProducts() {
     </div>
   </div>
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 .filter {
   max-width: 400px;
 

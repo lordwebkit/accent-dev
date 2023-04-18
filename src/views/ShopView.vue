@@ -1,21 +1,3 @@
-<template>
-  <div class="shop">
-    <div class="shop__inner container">
-      <AFilter class="shop__filter" />
-      <div class="shop-content">
-        <div class="shop-content__list">
-          <ShopCard class="shop-content__item" v-for="product in displayedProducts" v-bind:key="product.id" :productData="product" />
-        </div>
-        <ul class="shop-content__pagination shop-pagination">
-          <li class="shop-pagination__item" v-for="(page, index) in pages" :key="index">
-            <a class="shop-pagination__link" :class="{ 'shop-pagination__link--active': currentPage === index + 1 }"
-              href="#" @click.prevent="currentPage = index + 1">{{ index + 1 }}</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</template>
 <script setup>
 import AFilter from '@/components/AFilter.vue';
 import ShopCard from '@/components/ShopCard.vue';
@@ -47,6 +29,25 @@ const pages = computed(() => {
   return pages
 })
 </script>
+<template>
+  <div class="shop">
+    <div class="shop__inner container">
+      <AFilter class="shop__filter" />
+      <div class="shop-content">
+        <div class="shop-content__list">
+          <ShopCard class="shop-content__item" v-for="product in displayedProducts" v-bind:key="product.id"
+            :productData="product" />
+        </div>
+        <ul class="shop-content__pagination shop-pagination">
+          <li class="shop-pagination__item" v-for="(page, index) in pages" :key="index">
+            <a class="shop-pagination__link" :class="{ 'shop-pagination__link--active': currentPage === index + 1 }"
+              href="#" @click.prevent="currentPage = index + 1">{{ index + 1 }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
 <style lang="scss" scoped>
 .shop {
   &__inner {
@@ -66,13 +67,12 @@ const pages = computed(() => {
   &__list {
     display: flex;
     flex-wrap: wrap;
-    // justify-content: space-around;
-    height: 90%;
+    height: 95%;
     padding: 20px 50px 0;
   }
 
   &__item {
-    margin-right: 10px;
+    margin-right: 25px;
   }
 
   &__pagination {
@@ -101,4 +101,5 @@ const pages = computed(() => {
       color: black
     }
   }
-}</style>
+}
+</style>
