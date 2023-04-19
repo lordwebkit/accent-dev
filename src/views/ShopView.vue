@@ -52,7 +52,12 @@ const pages = computed(() => {
 .shop {
   &__inner {
     display: flex;
-    height: calc(100vh - 63px);
+    padding-bottom: 10px;
+
+    @media (max-width: 559px) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   &__filter {
@@ -67,12 +72,71 @@ const pages = computed(() => {
   &__list {
     display: flex;
     flex-wrap: wrap;
-    height: 95%;
     padding: 20px 50px 0;
+
+    @media (max-width: 1370px) {
+      padding: 20px 0 0 20px;
+    }
+
+    @media (max-width: 559px) {
+      padding-left: 0;
+      max-width: 345px;
+    }
+
+    @media (max-width: 364px) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   &__item {
-    margin-right: 25px;
+    &:not(:nth-child(n + 3)) {
+      margin-bottom: 25px;
+    }
+
+    &:not(:nth-child(3n)) {
+      margin-right: 25px;
+    }
+
+    @media (max-width: 1175px) {
+      &:not(:nth-child(n + 3)) {
+        margin-bottom: 20px;
+      }
+
+      &:not(:nth-child(3n)) {
+        margin-right: 20px;
+      }
+    }
+
+    @media (max-width: 795px) {
+      &:not(:nth-child(n + 3)) {
+        margin-bottom: 15px;
+      }
+
+      &:not(:nth-child(3n)) {
+        margin-right: 15px;
+      }
+    }
+
+    @media (max-width: 725px) {
+      margin-right: 15px;
+
+      &:nth-child(2n) {
+        margin-right: 0;
+      }
+
+      &:not(:nth-child(n + 4)) {
+        margin-bottom: 15px;
+      }
+    }
+
+    @media (max-width: 364px) {
+      margin-bottom: 15px;
+
+      &:nth-child(n) {
+        margin-right: 0;
+      }
+    }
   }
 
   &__pagination {
@@ -82,6 +146,8 @@ const pages = computed(() => {
 }
 
 .shop-pagination {
+  margin-top: 15px;
+
   &__item {
     list-style: none;
     width: 15px;

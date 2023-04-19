@@ -9,7 +9,7 @@ const store = useCartStore();
     <div class="shop-card__inner">
       <img class="shop-card__image" :src="`./src/assets${this.productData.image}`" alt="shop card image">
       <p class="shop-card__price">
-        Цена: {{ this.productData.regular_price.value + " " +  this.productData.regular_price.currency}}
+        Цена: {{ this.productData.regular_price.value + " " + this.productData.regular_price.currency }}
       </p>
       <p class="shop-card__title">Товар: {{ this.productData.title }}</p>
       <p class="shop-card__brand">Бренд: {{ this.productData.brand }}</p>
@@ -30,6 +30,26 @@ export default {
   border-radius: 10px;
   color: #fff;
 
+  @media (max-width: 1175px) {
+    width: 220px;
+    height: 355px;
+  }
+
+  @media (max-width: 970px) {
+    width: 190px;
+    height: 300px;
+  }
+
+  @media (max-width: 870px) {
+    width: 165px;
+    height: 275px;
+  }
+
+  @media (max-width: 364px) {
+    width: 80%;
+    height: 10%;
+  }
+
   &__inner {
     padding: 8px;
   }
@@ -40,6 +60,14 @@ export default {
 
   &__btn {
     margin-top: 8px;
+  }
+
+  &__price,
+  &__title,
+  &__brand {
+    @media (max-width: 970px) {
+      font-size: 16px;
+    }
   }
 }
 </style>

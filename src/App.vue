@@ -15,15 +15,18 @@ import AHeader from './components/AHeader.vue';
   box-sizing: border-box;
   font-size: 18px;
   font-family: Quicksand, sans-serif;
-}
-.container-xs {
-  width: 1200px;
-  padding: 0 15px;
-  margin: 0 auto;
+
+  @media (max-width: 425px) {
+    font-size: 16px;
+  }
 }
 .container {
-  width: 1400px;
+  max-width: 1400px;
   padding: 0 15px;
   margin: 0 auto;
+
+  @media (max-width: 425px) {
+    padding: 0 10px;
+  }
 }
 </style>

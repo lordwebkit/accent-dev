@@ -1,7 +1,6 @@
 <script setup>
 import { useCartStore } from '../stores/cart';
 const store = useCartStore();
-const cart = store.getCart.value
 </script>
 
 <template>
@@ -13,7 +12,7 @@ const cart = store.getCart.value
           Корзина
           <img class="header-nav-cart__icon" src="../assets/icons/cart.svg" alt="bag icon">
           <transition name="fade">
-            <span v-if="cart.length" class="header-nav-cart__amount">{{ cart.length }}</span>
+            <span v-if="store.getQuantityCartCard" class="header-nav-cart__amount">{{ store.getQuantityCartCard }}</span>
           </transition>
         </router-link>
       </nav>
@@ -34,6 +33,9 @@ const cart = store.getCart.value
   &__link {
     text-decoration: none;
     color: #fff;
+    @media (max-width: 970px) {
+      font-size: 16px;
+    }
   }
 }
 
@@ -45,6 +47,9 @@ const cart = store.getCart.value
   &__icon {
     margin-left: 10px;
     width: 35px;
+    @media (max-width: 970px) {
+      width: 30px;
+    }
   }
 
   &__amount {
@@ -60,6 +65,13 @@ const cart = store.getCart.value
     position: absolute;
     right: -10px;
     bottom: -9px;
+    @media (max-width: 970px) {
+      width: 20px;
+      height: 20px;
+      right: -8px;
+      bottom: -7px;
+      font-size: 14px;
+    }
   }
 }
 

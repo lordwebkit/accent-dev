@@ -17,15 +17,11 @@ export const useFiltersStore = defineStore('filters', {
       }
     },
     setCheckedBrandFilter(e) {
-      this.filterBrands = this.filterBrands.map(brand => {
-        if (brand.code === e.target.dataset.code) {
-          brand.checked = !brand.checked
-        }
-        return { ...brand }
-      })
+      const index = this.filterBrands.findIndex(brand => brand.code === e.target.dataset.code)
+      this.filterBrands[index] = { ...this.filterBrands[index], checked: !this.filterBrands[index].checked}
     },
     clearFilterBrands() {
-      this.filterBrands = this.filterBrands.map(brand => ({ ...brand, checked: false }))
+      this.filterBrands.forEach(brand => brand.checked = false)
     }
   }
 })

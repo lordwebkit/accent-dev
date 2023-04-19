@@ -34,6 +34,30 @@ function clearFilteredProducts() {
 .filter {
   max-width: 400px;
 
+  @media (max-width: 1293px) {
+    max-width: 350px;
+  }
+
+  @media (max-width: 1243px) {
+    max-width: 300px;
+  }
+
+  @media (max-width: 1075px) {
+    max-width: 250px;
+  }
+
+  @media (max-width: 1020px) {
+    max-width: 200px;
+  }
+
+  @media (max-width: 775px) {
+    max-width: 180px;
+  }
+
+  @media (max-width: 755px) {
+    max-width: 150px;
+  }
+
   &__title {
     margin-bottom: 10px;
   }
@@ -49,11 +73,21 @@ function clearFilteredProducts() {
     margin: 0 auto;
     display: block;
     text-decoration: underline;
+
+    @media (max-width: 1020px) {
+      font-size: 14px;
+    }
   }
 }
 
 .filter-brand {
   display: flex;
   margin-bottom: 10px;
+
+  &__name {
+    @media (max-width: 1020px) {
+      font-size: 16px;
+    }
+  }
 }
 </style>

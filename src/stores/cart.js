@@ -4,11 +4,21 @@ import { defineStore } from "pinia";
 export const useCartStore = defineStore('cart', () => {
   const cart = ref([]);
   const getCart = computed(() => cart)
+  const getQuantityCartCard = computed(() => {
+    return cart.value.reduce((acc, cartCard) => {
+      return (acc + cartCard.quantity);
+    }, 0)
+  })
+  const getTotalPrice = computed(() => {
+    return cart.value.reduce((acc, cartCard) => {
+      return (acc + (cartCard.regular_price.value * cartCard.quantity));
+    }, 0);
+  });
 
   function addToCart(product) {
     const persense = cart.value.map(cartCard => cartCard.id).indexOf(product.id)
     if (persense === -1) {
-      cart.value.push({ ...product, quantity: 1 })
+      cart.value = [...cart.value, { ...product, quantity: 1 }]
     } else {
       cart.value[persense].quantity++
     }
@@ -22,6 +32,6 @@ export const useCartStore = defineStore('cart', () => {
     if (product.quantity > 1) product.quantity--
   }
 
-  return { getCart, addToCart, incrementCartCard, decrementCartCard }
+  return { getCart, getTotalPrice, getQuantityCartCard, addToCart, incrementCartCard, decrementCartCard }
 })
 
