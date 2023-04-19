@@ -1,10 +1,13 @@
 <script setup>
 import AOrder from '../components/AOrder.vue';
 import CartCard from '../components/CartCard.vue';
+import AModal from '../components/AModal.vue';
 
 import { useCartStore } from '@/stores/cart';
+import { useModalCartStore} from '@/stores/modalCart'
 
 const store = useCartStore();
+const modalStore = useModalCartStore();
 </script>
 <template>
   <div class="cart">
@@ -18,6 +21,7 @@ const store = useCartStore();
         <AOrder class="cart__order"></AOrder>
       </div>
     </div>
+    <AModal :open="modalStore.getModalCart.value" :close="modalStore.closeModalCart">Заказ успешно оформлен</AModal>
   </div>
 </template>
 <style lang="scss" scoped>

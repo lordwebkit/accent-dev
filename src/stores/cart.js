@@ -32,6 +32,10 @@ export const useCartStore = defineStore('cart', () => {
     if (product.quantity > 1) product.quantity--
   }
 
-  return { getCart, getTotalPrice, getQuantityCartCard, addToCart, incrementCartCard, decrementCartCard }
+  function clearCart() {
+    cart.value.length = 0;
+  }
+
+  return { getCart, getTotalPrice, getQuantityCartCard, addToCart, incrementCartCard, decrementCartCard, clearCart }
 })
 

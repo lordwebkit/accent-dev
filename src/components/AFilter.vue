@@ -3,9 +3,11 @@ import ACheckbox from './ACheckbox.vue';
 import ABtn from './ABtn.vue';
 import { useFiltersStore } from '@/stores/filters'
 import { useProductsStore } from '@/stores/products'
+import { ref } from 'vue'
 
 const store = useFiltersStore();
 const storeProducts = useProductsStore();
+let showAllBrands = ref(false);
 
 store.filterBrandsReq();
 
@@ -20,10 +22,13 @@ function clearFilteredProducts() {
       <h3 class="filter__title">Бренды</h3>
       <div class="filter__brands">
         <div class="filter__brand filter-brand" v-for="(brand, index) in store.getFilterBrands" :key="index">
-          <ACheckbox class="filter-brand__checkbox" :checkedId="brand.id" :checkboxChecked="brand.checked"
-            :setCheckbox="store.setCheckedBrandFilter" :dataCode="brand.code" />
-          <p class="filter-brand__name">{{ brand.title }}</p>
+          <div class="filter-brand__inner" v-if="index < 5 || showAllBrands">
+            <ACheckbox class="filter-brand__checkbox" :checkedId="brand.id" :checkboxChecked="brand.checked"
+              :setCheckbox="store.setCheckedBrandFilter" :dataCode="brand.code" />
+            <p class="filter-brand__name">{{ brand.title }}</p>
+          </div>
         </div>
+        <button class="filter-brand__show-all" @click.prevent="showAllBrands = !showAllBrands">{{ showAllBrands ? "Скрыть" : "Показать" }} все</button>
       </div>
       <ABtn class="filter__put" @click.prevent="storeProducts.setFilteredProducts(store.getFilterBrands)">Применить</ABtn>
       <button class="filter__undo" @click.prevent="clearFilteredProducts()">Сбросить</button>
@@ -82,11 +87,26 @@ function clearFilteredProducts() {
 
 .filter-brand {
   display: flex;
-  margin-bottom: 10px;
 
   &__name {
+    margin-bottom: 10px;
     @media (max-width: 1020px) {
       font-size: 16px;
+    }
+  }
+
+  &__inner {
+    display: flex;
+  }
+
+  &__show-all {
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: none;
+    background-color: #fff;
+
+    &:hover {
+      cursor: pointer;
     }
   }
 }
